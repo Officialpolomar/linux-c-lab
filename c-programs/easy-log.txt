@@ -1,0 +1,7 @@
+mv (file) (location) --> moves file to the location specified
+pwd --> Shows Current Directory
+list --> lists files in current directory
+cd .. --> moves to parent directory
+cd (directory_name) --> moves to directory stated
+mv (file) (location) --> moves file to the location specified
+cp (original file) (new file) --> copies contents of original file into new file
