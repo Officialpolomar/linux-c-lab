@@ -1,0 +1,2 @@
+3
+Command used for result: 'find . -name "*.txt" | wc -l'  

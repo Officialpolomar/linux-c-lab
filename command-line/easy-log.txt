@@ -1,5 +1,5 @@
 mv (file) (location) --> moves file to the location specified
-pwd --> Shows Current Directory
+pwd --> shows current directory
 list --> lists files in current directory
 cd .. --> moves to parent directory
 cd (directory_name) --> moves to directory stated
