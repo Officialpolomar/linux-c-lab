@@ -23,9 +23,16 @@ printf("contact list full, cannot added more contacts");
 
 void print_contacts(struct Contact *contacts, int contact_list_size){
 
-	for(int i = 0; i < contact_list_size; i++){
+	int i;
+	for(i = 0; i < contact_list_size; i++){
+		 if(contacts[i].name[0] == '\0' && contacts[i].phone_number[0] == '\0') break;
+
 		printf("Name: %s\n Phone_Number: %s\n", contacts[i].name, contacts[i].phone_number);
 	} 
+	
+	if(i == 0){
+	printf("Contact list is empty.\n");
+	}
 }
 
 
@@ -45,10 +52,19 @@ scanf("%d", &menu_selection);
 
 switch(menu_selection){
 	case 1:
+		while (getchar() != '\n');
+		struct Contact new_contact;
+		printf("What is the name of the new contact? ");
+		fgets(new_contact.name, 30, stdin);
+		printf("What is the phone number  of the new contact? ");
+                fgets(new_contact.phone_number, 12, stdin);
+		add_contact(contacts, new_contact);
+		
 		break;
 	case 2:
 		break;
 	case 3:
+		print_contacts(contacts, 10);
 		break;
 	case 4:
 		printf("Program has ended");
@@ -60,5 +76,4 @@ switch(menu_selection){
 }
 
 }
-
 
