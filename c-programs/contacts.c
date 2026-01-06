@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
+#include <string.h>
+
 struct Contact {
 	char name[30];
 	char phone_number[12];
@@ -12,7 +14,7 @@ void add_contact(struct Contact *contacts, struct Contact new_contact){
 for(int i = 0; i < 10; i++){
 	if(contacts[i].name[0] == '\0' && contacts[i].phone_number[0] == '\0'){
 		contacts[i] = new_contact;
-		printf("contact added!");
+		printf("contact added!\n");
 		return;
 	}
 }
@@ -27,12 +29,27 @@ void print_contacts(struct Contact *contacts, int contact_list_size){
 	for(i = 0; i < contact_list_size; i++){
 		 if(contacts[i].name[0] == '\0' && contacts[i].phone_number[0] == '\0') break;
 
-		printf("Name: %s\n Phone_Number: %s\n", contacts[i].name, contacts[i].phone_number);
+		printf("Contact %d:\nName --> %sPhone_Number --> %s\n", i + 1 ,contacts[i].name, contacts[i].phone_number);
 	} 
 	
 	if(i == 0){
 	printf("Contact list is empty.\n");
 	}
+}
+void delete_contacts(struct Contact *contacts, char name[], int contact_list_size)
+{
+	for(int i = 0; i < contact_list_size; i++)
+	{
+		if(strcmp(contacts[i].name, name) == 0)
+		{
+			printf("\nContact Deleted\n");
+			contacts[i].name[0] == '\0';
+			contacts[i].phone_number[0] == '\0';
+			return;
+		}
+	}
+	printf("\nContact not found.\n");
+	
 }
 
 
@@ -40,6 +57,7 @@ void print_contacts(struct Contact *contacts, int contact_list_size){
 int main(){
 
 struct Contact contacts[10] = {0};
+char contact_name[30];
 
 bool quit_menu = false;
 int menu_selection;
@@ -62,6 +80,11 @@ switch(menu_selection){
 		
 		break;
 	case 2:
+		while (getchar() != '\n');
+		printf("What is the name of contact you want to delete?");
+		fgets(contact_name, sizeof(contact_name), stdin);
+		
+		delete_contacts(contacts,contact_name,10);
 		break;
 	case 3:
 		print_contacts(contacts, 10);
